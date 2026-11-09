@@ -199,12 +199,25 @@ Profiled with the same configuration for every variant (array size = 2^20, block
 | CUDA Prefetch + Page Creation + MemAdvise | 1024 | 16.315874 | 16.238144 | 16.357985 | 62.97x |
 
 ## iv.) Analysis of results
-            -Analysis of kernel execution time.  
-           - Analysis of speed performance across all platforms
---Guide questions for analysis (for all CUDA variants).  This is not comprehensive; add more analysis as necessary --
-a.) How does block size affect execution time (observing various elements and using max blocks)?  Which block size will you recommend?
-b) Is prefetching always recommended, or should CUDA manage memory?  Give some use cases in which one is better than the other.
-c.) Between SIMD and SIMT, which one is faster? Give some use cases in which one is better than the other.
+### iv.) Analysis of results
+
+**Analysis of kernel execution time and speed performance across all platforms**
+*   **SIMT Dominance:** The GPU (SIMT) drastically outperformed all CPU-based implementations. As the array size scaled to $2^{28}$ elements, the best CUDA variants completed the triad operation in $\sim 16.2$ ms, compared to $\sim 1050$ ms for the C baseline (a $\sim 64\times$ speedup). At $2^{26}$ elements, CUDA achieved its peak relative speedup of $\sim 67\times$. 
+*   **SIMD Bottleneck:** The x86-64 XMM and YMM implementations showed negligible speedups (ranging from $0.99\times$ to $1.05\times$) over the C baseline. Because the baseline C code was compiled in Release mode, the compiler likely auto-vectorized the simple triad operation, meaning both the C code and the manual SIMD assembly hit the CPU's memory bandwidth limit simultaneously.
+*   **Unified Memory Overhead:** Without prefetching, CUDA Unified Memory suffered from massive execution time spikes on the first launch due to on-demand page faults. For example, at $2^{28}$ elements, the maximum execution time spiked to $973$ ms, nearly erasing the GPU's performance advantage for that specific run.
+
+**a.) How does block size affect execution time? Which block size will you recommend?**
+*   Block size had a minimal but measurable impact on the prefetch variants. Across all array sizes, block sizes of $256$ and $512$ threads consistently yielded the lowest average execution times, while $1024$ threads were slightly slower (e.g., $4.10$ ms vs $4.05$ ms at $2^{26}$). 
+*   A block size of $256$ or $512$ is recommended. These sizes provide enough threads to hide latency and maximize Streaming Multiprocessor (SM) occupancy without exhausting register counts or shared memory resources, which likely caused the slight performance dip at $1024$ threads.
+
+**b.) Is prefetching always recommended, or should CUDA manage memory? Give use cases.**
+*   **Prefetching:** Using `cudaMemPrefetchAsync` successfully eliminated the massive page-fault latency spikes seen in the Unified variant (dropping the $2^{28}$ maximum time from $973$ ms down to $16.3$ ms). Prefetching is recommended for performance-critical applications where data sizes and memory access patterns are linear, predictable, and latency spikes cannot be tolerated.
+*   **CUDA Managed Memory:** Letting CUDA manage memory on-demand is better when dealing with highly complex data structures (like linked lists, trees, or graphs) where the exact memory access patterns are unpredictable. It is also necessary when the dataset exceeds the GPU's physical VRAM capacity, allowing the driver to automatically page memory in and out of system RAM.
+
+**c.) Between SIMD and SIMT, which one is faster? Give use cases.**
+*   SIMT is significantly faster for this workload, achieving up to a $67\times$ speedup compared to SIMD's $\sim 1.05\times$ peak speedup. The vector triad operation is heavily memory-bound, so the GPU's massive GDDR memory bandwidth easily outpaces the CPU's standard DDR RAM bandwidth.
+*   **SIMD Use Case:** SIMD is better for smaller workloads that fit entirely within the CPU's L1/L2 cache, or for latency-sensitive pipelines where the data is already on the CPU and the overhead of transferring it across the PCIe bus to the GPU would outweigh the computation time.
+*   **SIMT Use Case:** SIMT is best for massive, embarrassingly parallel workloads (like processing $268$ million elements) where the computational volume is large enough to saturate thousands of CUDA cores and justify the initial PCIe data transfer overhead.
 
 ## v.) Discussion of problems encountered and solutions made, unique methodology used, AHA moments, etc.
 
