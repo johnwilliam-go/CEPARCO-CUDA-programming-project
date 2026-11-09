@@ -142,29 +142,29 @@ Profiled with the same configuration for every variant (array size = 2^20, block
 | Implementation | CUDA Block Size | Avg (ms) | Min (ms) | Max (ms) | Speedup |
 |---|:---:|---:|---:|---:|---:|
 | C (Baseline) | N/A | 3.443607 | 3.084901 | 7.700419 | 1.00x |
-| x86-64  | N/A | 0.61* | - | - |  |
-| x86-64 XMM | N/A | 0.55* | - | - |  |
-| x86-64 YMM | N/A | 0.55* | - | - |  |
-| CUDA Unified | 256 | 0.206064 | 0.070720 | 4.045760 |
-| CUDA Unified | 512 | 0.195509 | 0.072736 | 3.678656 |
-| CUDA Unified | 1024 | 0.205222 | 0.082624 | 3.662976 |
-| CUDA Prefetch | 256 | 0.078063 | 0.072992 | 0.179200 |
-| CUDA Prefetch | 512 | 0.078503 | 0.069248 | 0.097824 |
-| CUDA Prefetch | 1024 | 0.086290 | 0.078432 | 0.102112 |
-| CUDA Prefetch + Page Creation | 256 | 0.077754 | 0.071872 | 0.172000 |
-| CUDA Prefetch + Page Creation | 512 | 0.075431 | 0.069760 | 0.096960 |
-| CUDA Prefetch + Page Creation | 1024 | 0.086507 | 0.081248 | 0.100384 |
-| CUDA Prefetch + Page Creation + MemAdvise | 256 | 0.078592 | 0.070752 | 0.157280 |
-| CUDA Prefetch + Page Creation + MemAdvise | 512 | 0.072035 | 0.065056 | 0.084960 |
-| CUDA Prefetch + Page Creation + MemAdvise | 1024 | 0.075698 | 0.068800 | 0.087680 |
+| x86-64  | N/A | 0.61* | - | - | 0.95x |
+| x86-64 XMM | N/A | 0.55* | - | - | 1.05x |
+| x86-64 YMM | N/A | 0.55* | - | - | 1.05x |
+| CUDA Unified | 256 | 0.206064 | 0.070720 | 4.045760 | 16.71x |
+| CUDA Unified | 512 | 0.195509 | 0.072736 | 3.678656 | 17.61x |
+| CUDA Unified | 1024 | 0.205222 | 0.082624 | 3.662976 | 16.78x |
+| CUDA Prefetch | 256 | 0.078063 | 0.072992 | 0.179200 | 44.11x |
+| CUDA Prefetch | 512 | 0.078503 | 0.069248 | 0.097824 | 43.87x |
+| CUDA Prefetch | 1024 | 0.086290 | 0.078432 | 0.102112 | 39.91x |
+| CUDA Prefetch + Page Creation | 256 | 0.077754 | 0.071872 | 0.172000 | 44.29x |
+| CUDA Prefetch + Page Creation | 512 | 0.075431 | 0.069760 | 0.096960 | 45.65x |
+| CUDA Prefetch + Page Creation | 1024 | 0.086507 | 0.081248 | 0.100384 | 39.81x |
+| CUDA Prefetch + Page Creation + MemAdvise | 256 | 0.078592 | 0.070752 | 0.157280 | 43.82x |
+| CUDA Prefetch + Page Creation + MemAdvise | 512 | 0.072035 | 0.065056 | 0.084960 | 47.80x |
+| CUDA Prefetch + Page Creation + MemAdvise | 1024 | 0.075698 | 0.068800 | 0.087680 | 45.49x |
 
 ### 2^26 elements (67,108,864)
 | Implementation | CUDA Block Size | Avg (ms) | Min (ms) | Max (ms) | Speedup |
 |---|:---:|---:|---:|---:|---:|
 | C (Baseline) | N/A | 272.392262 | 223.871918 | 459.954206 | 1.00x |
-| x86-64  | N/A | 39.34* | - | - |  |
-| x86-64 XMM | N/A | 38.42* | - | - |  |
-| x86-64 YMM | N/A | 38.80* | - | - |  |
+| x86-64  | N/A | 39.34* | - | - | 0.98x |
+| x86-64 XMM | N/A | 38.42* | - | - | 1.00x |
+| x86-64 YMM | N/A | 38.80* | - | - | 0.99x |
 | CUDA Unified | 256 | 11.603806 | 4.075456 | 229.627106 | 23.47x |
 | CUDA Unified | 512 | 11.153206 | 4.077024 | 215.917511 | 24.42x |
 | CUDA Unified | 1024 | 15.851581 | 4.108928 | 356.220856 | 17.18x |
@@ -182,9 +182,9 @@ Profiled with the same configuration for every variant (array size = 2^20, block
 | Implementation | CUDA Block Size | Avg (ms) | Min (ms) | Max (ms) | Speedup |
 |---|:---:|---:|---:|---:|---:|
 | C (Baseline) | N/A | 1050.427821 | 896.794912 | 1931.207315 | 1.00x |
-| x86-64  | N/A | 191.29* | - | - |  |
-| x86-64 XMM | N/A | 169.32* | - | - |  |
-| x86-64 YMM | N/A | 168.77* | - | - |  |
+| x86-64  | N/A | 191.29* | - | - | 0.89x |
+| x86-64 XMM | N/A | 169.32* | - | - | 1.01x |
+| x86-64 YMM | N/A | 168.77* | - | - | 1.01x |
 | CUDA Unified | 256 | 48.173068 | 16.254593 | 973.001831 | 21.81x |
 | CUDA Unified | 512 | 65.560450 | 16.279585 | 1494.225220 | 16.02x |
 | CUDA Unified | 1024 | 46.075185 | 16.365313 | 907.032410 | 22.80x |
