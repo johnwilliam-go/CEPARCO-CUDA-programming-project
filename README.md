@@ -2,6 +2,54 @@
 Google Colab link: https://colab.research.google.com/drive/1kj7JaL9r50vGm4epSSrF_PN9ZVov-DSn?usp=sharing
 
 ## 0.) Group members, project specifications, AI usage declaration
+### a. Group members
+GO, JOHN WILLIAM <br>
+PLACER, PAUL JOHN <br>
+ESPERANZA, MJ AJEGRAM <br>
+OBAR, DAVID ANGELO <br>
+
+### b. project specifications
+#### Vector triad operation
+
+**Input:**
+- Scalar variable `n` (integer) containing the length of the vectors.
+- Vectors `B`, `C`, and `D` containing single-precision floating-point values.
+
+**Process:**
+
+For each element:
+
+    A[i] = B[i] + C[i] * D[i];
+
+**Output:**
+- Store the computed results in vector `A`.
+
+#### Test Configurations
+
+- **Vector Sizes:** `2^24`, `2^26`, and `2^28`
+- **CUDA Block Sizes:** `256`, `512`, and `1024` threads per block.
+
+#### Vector Initialization
+
+The input vectors were initialized using the following method:
+
+    #define SEED 0.000001
+
+    for (size_t i = 0; i < ARRAY_SIZE; i++) {
+        b[i] = i * SEED;
+        c[i] = i * SEED * 2.0;
+        d[i] = i * SEED * 3.0;
+    }
+#### c. AI usage declaration
+AI was solely used for assistance in understanding the CUDA concepts and its implementation, as well as grammar and format checking for the README section.
+
+
+
+
+
+
+
+
 ## i.) Screenshot of the program output with correctness check AND execution time for all cases
 
 ### a. C version
