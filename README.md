@@ -332,5 +332,56 @@ a.) How does block size affect execution time (observing various elements and us
 b) Is prefetching always recommended, or should CUDA manage memory?  Give some use cases in which one is better than the other.
 c.) Between SIMD and SIMT, which one is faster? Give some use cases in which one is better than the other.
 
-## v.) Discussion the problems encountered and solutions made, unique methodology used, AHA moments, etc.
-## vi.) Discuss, based on your experience on the particular project use case, the differences between SIMD and SIMT in handling parallelism.  Include also the PROS and CONS of using SIMD and SIMT in your use case.
+## v.) Discussion of problems encountered and solutions made, unique methodology used, AHA moments, etc.
+
+### a. Problems encountered and solutions
+
+**1. Large gap between average and minimum time in Variant 2 (CUDA Unified)**
+
+At 2^24 and block size 256, the minimum was 1.02 ms but the average was 4.15 ms and the maximum 94.4 ms. The first launch was slow because managed pages had to migrate from host to GPU through on-demand page faults. Solution: We reported min/avg/max together, and Variants 3 to 5 used cudaMemPrefetchAsync to move the data before the timed kernel.
+
+**2. Fair comparison across variants**
+
+We used the same initialization, sizes, block sizes, and timing method for every variant, and profiled all of them with nsys at 2^24 and block size 256.
+
+**3. Correctness checking at 2^28**
+
+Each array is 1 GiB, so we checked results element by element against the formula instead of keeping duplicate copies.
+
+### b. Unique methodology
+
+We built the CUDA code as four incremental variants (Unified → Prefetch → Page Creation → MemAdvise). Each variant changes one feature, so any timing difference can be traced to that feature. nsys traces were used to explain each result.
+
+### c. AHA moments
+
+- **The kernel is memory-bound.** Prefetch times scale linearly with array size (~1.02, ~4.05, and ~16.3 ms), which works out to about 263 GB/s at every size. The single multiply-add barely matters.
+- **The Unified slowdown is page migration, not computation.** The steady-state minimums for Unified and Prefetch are nearly identical (1.02 ms vs. 1.01 ms at 2^24).
+- **More features did not mean more speed.** Page creation and MemAdvise gave no gain over plain prefetch, since the data is touched only once by a single GPU.
+- **Block size 1024 was sometimes slower** (e.g., 1.25 ms vs. 1.02 ms at 2^24 with page creation). We did not profile this directly, so the cause is a hypothesis.
+- **The 60× to 67× speedup is against single-threaded C**, so it would shrink against a multithreaded or SIMD CPU version.
+
+## vi.) SIMD vs. SIMT in handling parallelism: our use case
+
+### a. How each handles parallelism
+
+| | SIMD (x86-64 XMM/YMM) | SIMT (CUDA) |
+|---|---|---|
+| **Model** | One CPU thread applies one instruction to a packed register (4 floats for XMM, 8 for YMM). | Thousands of threads run the same scalar code, grouped in warps of 32. |
+| **Programmer's job** | Manage vector width, alignment, and leftover elements. | Write the code for one element; the grid-stride loop handles any array size. |
+| **Scaling** | Limited by register width and CPU core count. | Scales with the number of threads; the GPU hides memory latency by switching warps. |
+
+### b. Which was faster?
+
+SIMT was clearly faster. At 2^28 elements, the C baseline took ~1050 ms while the best CUDA runs took ~16.3 ms (~64×). The triad is bandwidth-bound, so GPU memory bandwidth matters more than wider CPU registers.
+
+### c. Pros and cons
+
+| | Pros | Cons |
+|---|---|---|
+| **SIMD** | No data transfer; low overhead; good for small arrays; compilers can auto-vectorize the triad | Fixed width (4 or 8); alignment and remainder handling; tied to SSE/AVX; limited by CPU memory bandwidth |
+| **SIMT** | Massive parallelism and bandwidth (58× to 67× in our best cases); simple scalar-style code; grid-stride loops handle any size | Needs memory management; page faults cost up to ~94 ms without prefetch; poor for small inputs; needs a GPU |
+
+### d. Use cases
+
+- **SIMD is better** for small arrays already in CPU memory and for latency-sensitive code.
+- **SIMT is better** for very large, independent-element workloads like our 2^26 and 2^28 cases, especially when data stays on the GPU across multiple kernels.
