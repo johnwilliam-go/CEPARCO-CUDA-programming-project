@@ -165,18 +165,18 @@ Profiled with the same configuration for every variant (array size = 2^20, block
 | x86-64  | N/A | 39.34* | - | - | 0.98x |
 | x86-64 XMM | N/A | 38.42* | - | - | 1.00x |
 | x86-64 YMM | N/A | 38.80* | - | - | 0.99x |
-| CUDA Unified | 256 | 11.603806 | 4.075456 | 229.627106 | 23.47x |
-| CUDA Unified | 512 | 11.153206 | 4.077024 | 215.917511 | 24.42x |
-| CUDA Unified | 1024 | 15.851581 | 4.108928 | 356.220856 | 17.18x |
-| CUDA Prefetch | 256 | 4.058710 | 4.038976 | 4.082336 | 67.11x |
-| CUDA Prefetch | 512 | 4.086373 | 4.070272 | 4.120896 | 66.66x |
-| CUDA Prefetch | 1024 | 4.109995 | 4.097984 | 4.141536 | 66.28x |
-| CUDA Prefetch + Page Creation | 256 | 4.054480 | 4.047680 | 4.080384 | 67.18x |
-| CUDA Prefetch + Page Creation | 512 | 4.075839 | 4.063360 | 4.107040 | 66.83x |
-| CUDA Prefetch + Page Creation | 1024 | 4.108581 | 4.093152 | 4.142144 | 66.30x |
-| CUDA Prefetch + Page Creation + MemAdvise | 256 | 4.060057 | 4.049664 | 4.086496 | 67.09x |
-| CUDA Prefetch + Page Creation + MemAdvise | 512 | 4.076357 | 4.064288 | 4.104704 | 66.82x |
-| CUDA Prefetch + Page Creation + MemAdvise | 1024 | 4.907161 | 4.885376 | 4.945760 | 55.51x |
+| CUDA Unified | 256 | 13.139214 | 4.025728 | 276.571991 | 20.48x |
+| CUDA Unified | 512 | 16.058554 | 4.087424 | 362.875336 | 16.76x |
+| CUDA Unified | 1024 | 15.365106 | 4.104096 | 341.620117 | 17.51x |
+| CUDA Prefetch | 256 | 4.069211 | 4.055008 | 4.093056 | 66.13x |
+| CUDA Prefetch | 512 | 4.206043 | 4.188480 | 4.239552 | 63.98x |
+| CUDA Prefetch | 1024 | 4.892018 | 4.876096 | 4.921728 | 55.01x |
+| CUDA Prefetch + Page Creation | 256 | 4.068992 | 4.055936 | 4.100128 | 66.13x |
+| CUDA Prefetch + Page Creation | 512 | 4.064311 | 4.053440 | 4.093760 | 66.21x |
+| CUDA Prefetch + Page Creation | 1024 | 4.103267 | 4.090592 | 4.141216 | 65.58x |
+| CUDA Prefetch + Page Creation + MemAdvise | 256 | 4.048066 | 3.999072 | 4.101792 | 66.47x |
+| CUDA Prefetch + Page Creation + MemAdvise | 512 | 4.087780 | 4.071136 | 4.128864 | 65.83x |
+| CUDA Prefetch + Page Creation + MemAdvise | 1024 | 4.103563 | 4.088672 | 4.139872 | 65.58x |
 
 ### 2^28 elements (268,435,456)
 | Implementation | CUDA Block Size | Avg (ms) | Min (ms) | Max (ms) | Speedup |
@@ -185,18 +185,18 @@ Profiled with the same configuration for every variant (array size = 2^20, block
 | x86-64  | N/A | 191.29* | - | - | 0.89x |
 | x86-64 XMM | N/A | 169.32* | - | - | 1.01x |
 | x86-64 YMM | N/A | 168.77* | - | - | 1.01x |
-| CUDA Unified | 256 | 48.173068 | 16.254593 | 973.001831 | 21.81x |
-| CUDA Unified | 512 | 65.560450 | 16.279585 | 1494.225220 | 16.02x |
-| CUDA Unified | 1024 | 46.075185 | 16.365313 | 907.032410 | 22.80x |
-| CUDA Prefetch | 256 | 16.351541 | 16.242912 | 16.381439 | 64.24x |
-| CUDA Prefetch | 512 | 16.268822 | 16.251968 | 16.354656 | 64.57x |
-| CUDA Prefetch | 1024 | 16.415888 | 16.342112 | 18.172352 | 63.99x |
-| CUDA Prefetch + Page Creation | 256 | 16.333385 | 16.025761 | 16.384895 | 64.31x |
-| CUDA Prefetch + Page Creation | 512 | 16.257561 | 16.236671 | 16.473152 | 64.61x |
-| CUDA Prefetch + Page Creation | 1024 | 16.353796 | 16.338177 | 16.385376 | 64.23x |
-| CUDA Prefetch + Page Creation + MemAdvise | 256 | 16.356226 | 16.240864 | 16.377760 | 64.22x |
-| CUDA Prefetch + Page Creation + MemAdvise | 512 | 16.258186 | 16.091648 | 16.291168 | 64.61x |
-| CUDA Prefetch + Page Creation + MemAdvise | 1024 | 16.361675 | 16.348640 | 16.392736 | 64.20x |
+| CUDA Unified | 256 | 47.685760 | 16.243168 | 958.953674 | 21.55x |
+| CUDA Unified | 512 | 62.024775 | 16.279167 | 1388.098267 | 16.56x |
+| CUDA Unified | 1024 | 47.534587 | 16.365696 | 950.947876 | 21.61x |
+| CUDA Prefetch | 256 | 16.369804 | 15.998656 | 16.427135 | 62.76x |
+| CUDA Prefetch | 512 | 16.277559 | 16.254496 | 16.354496 | 63.12x |
+| CUDA Prefetch | 1024 | 16.409190 | 16.343552 | 17.719681 | 62.61x |
+| CUDA Prefetch + Page Creation | 256 | 16.386366 | 16.217760 | 16.445280 | 62.69x |
+| CUDA Prefetch + Page Creation | 512 | 16.256304 | 16.247583 | 16.290976 | 63.20x |
+| CUDA Prefetch + Page Creation | 1024 | 16.337347 | 16.247488 | 16.378592 | 62.88x |
+| CUDA Prefetch + Page Creation + MemAdvise | 256 | 16.382229 | 15.984256 | 16.464449 | 62.71x |
+| CUDA Prefetch + Page Creation + MemAdvise | 512 | 16.224760 | 16.160608 | 16.291168 | 63.32x |
+| CUDA Prefetch + Page Creation + MemAdvise | 1024 | 16.315874 | 16.238144 | 16.357985 | 62.97x |
 
 ## iv.) Analysis of results
             -Analysis of kernel execution time.  
@@ -212,11 +212,11 @@ c.) Between SIMD and SIMT, which one is faster? Give some use cases in which one
 
 **1. Large gap between average and minimum time in Variant 2 (CUDA Unified)**
 
-At 2^20 and block size 256, the minimum was 1.02 ms but the average was 4.15 ms and the maximum 94.4 ms. The first launch was slow because managed pages had to migrate from host to GPU through on-demand page faults. Solution: We reported min/avg/max together, and Variants 3 to 5 used cudaMemPrefetchAsync to move the data before the timed kernel.
+At 2^20 and block size 256, the minimum was 0.071 ms but the average was 0.206 ms and the maximum 4.05 ms. The first launch was slow because managed pages had to migrate from host to GPU through on-demand page faults. Solution: we reported min, avg and max together, and Variants 3 to 5 used `cudaMemPrefetchAsync` to move the data before the timed kernel.
 
 **2. Fair comparison across variants**
 
-We used the same initialization, sizes, block sizes, and timing method for every variant, and profiled all of them with nsys at 2^20 and block size 256.
+We used the same initialization, sizes, block sizes and timing method for every variant, and profiled all of them with nsys at 2^20 and block size 256.
 
 **3. Correctness checking at 2^28**
 
@@ -228,11 +228,13 @@ We built the CUDA code as four incremental variants (Unified → Prefetch → Pa
 
 ### c. AHA moments
 
-- **The kernel is memory-bound.** Prefetch times scale linearly with array size (~1.02, ~4.05, and ~16.3 ms), which works out to about 263 GB/s at every size. The single multiply-add barely matters.
-- **The Unified slowdown is page migration, not computation.** The steady-state minimums for Unified and Prefetch are nearly identical (1.02 ms vs. 1.01 ms at 2^20).
-- **More features did not mean more speed.** Page creation and MemAdvise gave no gain over plain prefetch, since the data is touched only once by a single GPU.
-- **Block size 1024 was sometimes slower** (e.g., 1.25 ms vs. 1.02 ms at 2^20 with page creation). We did not profile this directly, so the cause is a hypothesis.
-- **The 60× to 67× speedup is against single-threaded C**, so it would shrink against a multithreaded or SIMD CPU version.
+- **The kernel is memory-bound.** Prefetch times scale linearly with array size (about 4 ms at 2^26 and 16 ms at 2^28), which works out to about 250 to 263 GB/s. The single multiply-add barely matters.
+- **The Unified slowdown is page migration, not computation.** The steady-state minimums for Unified and Prefetch are nearly identical (0.0707 vs 0.0730 ms at 2^20, 4.03 vs 4.06 ms at 2^26, 16.24 vs 16.00 ms at 2^28). Only the averages and maximums differ.
+- **More features did not mean more speed.** At 2^26 and 2^28, Page Creation and MemAdvise gave no gain over plain Prefetch, since the data is touched only once by a single GPU.
+- **Block size 1024 was sometimes slower, but not consistently.** For example, 4.89 ms vs 4.07 ms at 2^26 with plain Prefetch, and 0.086 ms vs 0.078 ms at 2^20. The slow row changed between runs, and at 2^28 all three block sizes tied at about 16.3 ms. We did not profile this directly, so we treat it as run-to-run variation.
+- **The speedup is against single-threaded, unoptimized C.** The Prefetch variants were about 55x to 66x faster at 2^26 and about 63x at 2^28, and about 63x to 76x at 2^20. These would shrink against a multithreaded or SIMD CPU version.
+
+---
 
 ## vi.) SIMD vs. SIMT in handling parallelism: our use case
 
@@ -246,14 +248,14 @@ We built the CUDA code as four incremental variants (Unified → Prefetch → Pa
 
 ### b. Which was faster?
 
-SIMT was clearly faster. At 2^28 elements, the C baseline took ~1050 ms while the best CUDA runs took ~16.3 ms (~64×). The triad is bandwidth-bound, so GPU memory bandwidth matters more than wider CPU registers.
+SIMT was clearly faster than our scalar C baseline. At 2^28 elements, the C baseline took about 1027 ms while the best CUDA runs took about 16 ms (about 63x). At 2^20 the best runs were about 70x faster. The triad is bandwidth-bound, so GPU memory bandwidth matters more than wider CPU registers.
 
 ### c. Pros and cons
 
 | | Pros | Cons |
 |---|---|---|
 | **SIMD** | No data transfer; low overhead; good for small arrays; compilers can auto-vectorize the triad | Fixed width (4 or 8); alignment and remainder handling; tied to SSE/AVX; limited by CPU memory bandwidth |
-| **SIMT** | Massive parallelism and bandwidth (58× to 67× in our best cases); simple scalar-style code; grid-stride loops handle any size | Needs memory management; page faults cost up to ~94 ms without prefetch; poor for small inputs; needs a GPU |
+| **SIMT** | Massive parallelism and bandwidth (about 63x to 66x over C at 2^26 and 2^28 in our best cases); simple scalar-style code; grid-stride loops handle any size | Needs memory management; worst runs reached about 1.4 s at 2^28; poor for small inputs; needs a GPU |
 
 ### d. Use cases
 
