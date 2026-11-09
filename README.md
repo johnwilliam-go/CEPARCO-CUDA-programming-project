@@ -270,15 +270,15 @@ Profiled with the same configuration for every variant (array size = 2^24, block
 <img width="975" height="481" alt="image" src="https://github.com/user-attachments/assets/93b7ddde-eeca-4807-8f84-7b39df8bb8c0" />
 
 ## iii.) Comparative table of execution time (C, CUDA variants, x86-64, XMM, YMM)
-*Note that the x86-64 implementations were ran in a different machine because they could not be run in the Colab Notebook, so their times are not listed. Their speedups are compared against optimized C (Release Mode in Visual Studio).
+*Note that the x86-64 implementations were ran in a different machine because they could not be run in the Colab Notebook, so their times are not listed. Their speedups are compared against optimized C (Release Mode in Visual Studio), whose runtimes are 0.58ms, 38.56ms, and 170.69ms for 2^20, 2^26, and 2^28 respectively.
 
 ### 2^20 elements (1,048,576)
 | Implementation | CUDA Block Size | Avg (ms) | Min (ms) | Max (ms) | Speedup |
 |---|:---:|---:|---:|---:|---:|
 | C (Baseline) | N/A | 3.443607 | 3.084901 | 7.700419 | 1.00x |
-| x86-64  | N/A | - | - | - |  |
-| x86-64 XMM | N/A | - | - | - |  |
-| x86-64 YMM | N/A | - | - | - |  |
+| x86-64  | N/A | 0.61* | - | - |  |
+| x86-64 XMM | N/A | 0.55* | - | - |  |
+| x86-64 YMM | N/A | 0.55* | - | - |  |
 | CUDA Unified | 256 | 
 | CUDA Unified | 512 | 
 | CUDA Unified | 1024 | 
@@ -297,9 +297,9 @@ Profiled with the same configuration for every variant (array size = 2^24, block
 | Implementation | CUDA Block Size | Avg (ms) | Min (ms) | Max (ms) | Speedup |
 |---|:---:|---:|---:|---:|---:|
 | C (Baseline) | N/A | 272.392262 | 223.871918 | 459.954206 | 1.00x |
-| x86-64  | N/A | - | - | - |  |
-| x86-64 XMM | N/A | - | - | - |  |
-| x86-64 YMM | N/A | - | - | - |  |
+| x86-64  | N/A | 39.34 |  | - |  |
+| x86-64 XMM | N/A | 38.42 |  | - |  |
+| x86-64 YMM | N/A | 38.80 |  | - |  |
 | CUDA Unified | 256 | 11.603806 | 4.075456 | 229.627106 | 23.47x |
 | CUDA Unified | 512 | 11.153206 | 4.077024 | 215.917511 | 24.42x |
 | CUDA Unified | 1024 | 15.851581 | 4.108928 | 356.220856 | 17.18x |
@@ -318,9 +318,9 @@ Profiled with the same configuration for every variant (array size = 2^24, block
 | Implementation | CUDA Block Size | Avg (ms) | Min (ms) | Max (ms) | Speedup |
 |---|:---:|---:|---:|---:|---:|
 | C (Baseline) | N/A | 1050.427821 | 896.794912 | 1931.207315 | 1.00x |
-| x86-64  | N/A | - | - | - |  |
-| x86-64 XMM | N/A | - | - | - |  |
-| x86-64 YMM | N/A | - | - | - |  |
+| x86-64  | N/A | 191.29* | - | - |  |
+| x86-64 XMM | N/A | 169.32* | - | - |  |
+| x86-64 YMM | N/A | 168.77* | - | - |  |
 | CUDA Unified | 256 | 48.173068 | 16.254593 | 973.001831 | 21.81x |
 | CUDA Unified | 512 | 65.560450 | 16.279585 | 1494.225220 | 16.02x |
 | CUDA Unified | 1024 | 46.075185 | 16.365313 | 907.032410 | 22.80x |
