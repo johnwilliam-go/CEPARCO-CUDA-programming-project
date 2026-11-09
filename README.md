@@ -269,31 +269,37 @@ Profiled with the same configuration for every variant (array size = 2^24, block
 ### d. Variant 5 - CUDA Prefetch + Page Creation + Mem Advise
 <img width="975" height="481" alt="image" src="https://github.com/user-attachments/assets/93b7ddde-eeca-4807-8f84-7b39df8bb8c0" />
 
-
 ## iii.) Comparative table of execution time (C, CUDA variants, x86-64, XMM, YMM)
-### 2^24 elements (16,777,216)
+*Note that the x86-64 implementations were ran in a different machine because they could not be run in the Colab Notebook, so their times are not listed. Their speedups are compared against optimized C (Release Mode in Visual Studio).
 
+### 2^20 elements (1,048,576)
 | Implementation | CUDA Block Size | Avg (ms) | Min (ms) | Max (ms) | Speedup |
 |---|:---:|---:|---:|---:|---:|
-| C (Baseline) | N/A | 60.625244 | 56.303079 | 117.028668 | 1.00x |
-| CUDA Unified | 256 | 4.145169 | 1.019616 | 94.365471 | 14.63x |
-| CUDA Unified | 512 | 4.560891 | 1.016256 | 107.089500 | 13.29x |
-| CUDA Unified | 1024 | 2.936491 | 1.026016 | 58.173504 | 20.65x |
-| CUDA Prefetch | 256 | 1.023716 | 1.011200 | 1.137984 | 59.22x |
-| CUDA Prefetch | 512 | 1.018745 | 1.004896 | 1.046272 | 59.51x |
-| CUDA Prefetch | 1024 | 1.044943 | 1.033856 | 1.079968 | 58.02x |
-| CUDA Prefetch + Page Creation | 256 | 1.022852 | 1.013280 | 1.125760 | 59.27x |
-| CUDA Prefetch + Page Creation | 512 | 1.037619 | 1.027264 | 1.061184 | 58.43x |
-| CUDA Prefetch + Page Creation | 1024 | 1.251183 | 1.245376 | 1.267488 | 48.45x |
-| CUDA Prefetch + Page Creation + MemAdvise | 256 | 1.026281 | 1.014336 | 1.153984 | 59.07x |
-| CUDA Prefetch + Page Creation + MemAdvise | 512 | 1.049524 | 1.035648 | 1.083328 | 57.76x |
-| CUDA Prefetch + Page Creation + MemAdvise | 1024 | 1.257167 | 1.243520 | 1.440064 | 48.22x |
+| C (Baseline) | N/A | 3.443607 | 3.084901 | 7.700419 | 1.00x |
+| x86-64  | N/A | - | - | - |  |
+| x86-64 XMM | N/A | - | - | - |  |
+| x86-64 YMM | N/A | - | - | - |  |
+| CUDA Unified | 256 | 
+| CUDA Unified | 512 | 
+| CUDA Unified | 1024 | 
+| CUDA Prefetch | 256 | 
+| CUDA Prefetch | 512 | 
+| CUDA Prefetch | 1024 | 
+| CUDA Prefetch + Page Creation | 
+| CUDA Prefetch + Page Creation | 
+| CUDA Prefetch + Page Creation | 
+| CUDA Prefetch + Page Creation + MemAdvise | 
+| CUDA Prefetch + Page Creation + MemAdvise | 
+| CUDA Prefetch + Page Creation + MemAdvise | 
 
 ### 2^26 elements (67,108,864)
 
 | Implementation | CUDA Block Size | Avg (ms) | Min (ms) | Max (ms) | Speedup |
 |---|:---:|---:|---:|---:|---:|
 | C (Baseline) | N/A | 272.392262 | 223.871918 | 459.954206 | 1.00x |
+| x86-64  | N/A | - | - | - |  |
+| x86-64 XMM | N/A | - | - | - |  |
+| x86-64 YMM | N/A | - | - | - |  |
 | CUDA Unified | 256 | 11.603806 | 4.075456 | 229.627106 | 23.47x |
 | CUDA Unified | 512 | 11.153206 | 4.077024 | 215.917511 | 24.42x |
 | CUDA Unified | 1024 | 15.851581 | 4.108928 | 356.220856 | 17.18x |
@@ -312,6 +318,9 @@ Profiled with the same configuration for every variant (array size = 2^24, block
 | Implementation | CUDA Block Size | Avg (ms) | Min (ms) | Max (ms) | Speedup |
 |---|:---:|---:|---:|---:|---:|
 | C (Baseline) | N/A | 1050.427821 | 896.794912 | 1931.207315 | 1.00x |
+| x86-64  | N/A | - | - | - |  |
+| x86-64 XMM | N/A | - | - | - |  |
+| x86-64 YMM | N/A | - | - | - |  |
 | CUDA Unified | 256 | 48.173068 | 16.254593 | 973.001831 | 21.81x |
 | CUDA Unified | 512 | 65.560450 | 16.279585 | 1494.225220 | 16.02x |
 | CUDA Unified | 1024 | 46.075185 | 16.365313 | 907.032410 | 22.80x |
@@ -324,6 +333,7 @@ Profiled with the same configuration for every variant (array size = 2^24, block
 | CUDA Prefetch + Page Creation + MemAdvise | 256 | 16.356226 | 16.240864 | 16.377760 | 64.22x |
 | CUDA Prefetch + Page Creation + MemAdvise | 512 | 16.258186 | 16.091648 | 16.291168 | 64.61x |
 | CUDA Prefetch + Page Creation + MemAdvise | 1024 | 16.361675 | 16.348640 | 16.392736 | 64.20x |
+
 ## iv.) Analysis of results
             -Analysis of kernel execution time.  
            - Analysis of speed performance across all platforms
