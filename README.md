@@ -26,5 +26,12 @@ Google Colab link: https://colab.research.google.com/drive/1kj7JaL9r50vGm4epSSrF
 | CUDA Prefetch + Page Creation + MemAdvise | 1024 | -- | -- | -- | --x |
 
 ## iv.) Analysis of results
+            -Analysis of kernel execution time.  
+           - Analysis of speed performance across all platforms
+--Guide questions for analysis (for all CUDA variants).  This is not comprehensive; add more analysis as necessary --
+a.) How does block size affect execution time (observing various elements and using max blocks)?  Which block size will you recommend?
+b) Is prefetching always recommended, or should CUDA manage memory?  Give some use cases in which one is better than the other.
+c.) Between SIMD and SIMT, which one is faster? Give some use cases in which one is better than the other.
+
 ## v.) Discussion the problems encountered and solutions made, unique methodology used, AHA moments, etc.
 ## vi.) Discuss, based on your experience on the particular project use case, the differences between SIMD and SIMT in handling parallelism.  Include also the PROS and CONS of using SIMD and SIMT in your use case.
