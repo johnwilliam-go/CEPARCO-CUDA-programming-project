@@ -285,12 +285,12 @@ Profiled with the same configuration for every variant (array size = 2^24, block
 | CUDA Prefetch | 256 | 
 | CUDA Prefetch | 512 | 
 | CUDA Prefetch | 1024 | 
-| CUDA Prefetch + Page Creation | 
-| CUDA Prefetch + Page Creation | 
-| CUDA Prefetch + Page Creation | 
-| CUDA Prefetch + Page Creation + MemAdvise | 
-| CUDA Prefetch + Page Creation + MemAdvise | 
-| CUDA Prefetch + Page Creation + MemAdvise | 
+| CUDA Prefetch + Page Creation | 256 |
+| CUDA Prefetch + Page Creation | 512 |
+| CUDA Prefetch + Page Creation | 1024 |
+| CUDA Prefetch + Page Creation + MemAdvise | 256 |
+| CUDA Prefetch + Page Creation + MemAdvise | 512 |
+| CUDA Prefetch + Page Creation + MemAdvise | 1024 |
 
 ### 2^26 elements (67,108,864)
 
